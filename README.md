@@ -55,10 +55,51 @@ Nos bajamos el paquete Redmine de bitnami:
  
  Comenzara un asistente para configurar el Redmine seguimos los pasos.
  
- Copiamos IPv4 Public IP lo pegamos en el buscador y accedemos
+ Copiamos IPv4 Public IP lo pegamos en el buscador y accedemos.
+ 
  ## Instalación y configuración de Moodle
+ Moodle es una herramienta de gestión de aprendizaje, o más concretamente de Learning Content Management, de distribución libre, escrita en PHP.
+ Ahora vamos a instalar y configurar un sitio Redmine con los instaladores de Bitnami ya que automatizan la configuración de una pila de aplicaciones Bitnami en Windows, Mac OS y Linux. Cada instalador incluye todo el software necesario para ejecutarse.
 
+Nos bajamos el paquete Moodle de bitnami:
+
+ ``wget https://bitnami.com/redirect/to/373378/bitnami-moodle-3.6.0-0-linux-x64-installer.run``
+ 
+ En caso de que este enlaze no funcione nos vamos a  https://bitnami.com/stacks elegimos la aplicacion que queremos instalar, luego nos vamos a la opcion de ``on my computer`` y en los instaladores hacemos click derecho y copiar dirección de enlace. 
+  
+ Cambiamos permisos para ejecutarlo, se pone en verde el archivo: 
+ 
+ ``sudo chmod 755 bitnami-moodle-3.6.0-0-linux-x64-installer.run``
+ 
+ Instalamos:
+ 
+ ``sudo ./bitnami-moodle-3.6.0-0-linux-x64-installer.run``
+ 
+ Comenzara un asistente para configurar Moodle seguimos los pasos.
+ 
+ Copiamos IPv4 Public IP lo pegamos en el buscador damos click en ``log in`` y accedemos a configurar el sitio.
+ 
  ## Instalación y configuración de Gitlab
+ Gitlab es un servicio web de control de versiones y desarrollo de software colaborativo basado en Git. Además de gestor de repositorios, el servicio ofrece también alojamiento de wikis y un sistema de seguimiento de errores, todo ello publicado bajo una Licencia de código abierto
+  Ahora vamos a instalar y configurar drupal con una maquina ubuntu ``bitnami-gitlab-11.3.1-0-r40-linux-debian-9-x86_64-hvm-ebs``, con Gitlab preinstalado con bitnami este  instalador incluye todo el software necesario para ejecutarse.
+  
+  Damos ``continue``, en la opcion 2 tendremos que seleccionar ``t2.medium``, ya que la que viene por defecto no tiene suficiente memoria para arrancar la instancia y cuando se crea la instancia aparece un mensaje de error ``low memory``, en la opcion 6 donde configuraremos las reglas de seguridad y en ``add rule`` seleccionamos ``http`` y ``https`` para que nos deje acceder desde cualquier sitio y Launch.
+  
+  Una vez realizado esto tenemos que conectar via ssh para conocer la contraseña y el usuario, se pueden hacer de dos maneras:
+ 
+1.- Mediante el panel de las intancias:
+Vamos a la pestaña de ``actions`` y en ``instance settings`` aparece la opcion de ``get system log`` donde aparecera un recuadro con el ``user`` y el ``password`` para acceder a la  configuracion de Wordpress. 
+
+*Alguna vez me ha ocurrido de que no sale el usuario ni la contraseña en este proceso por la seguridad.
+
+2.- Via ssh:
+En ``/home/bitnami`` existe un fichero llamado ``bitnami_credentials`` donde usaremos el comando cat para ver el usuario y la contraseña.
+
+``cat bitnami_credentials``
+
+Aparece un recuadro con el ``user`` y ``password``.
+
+Añadimos la ip de IPv4 Public IP a nuestra url del explorador donde nos dira que el sitio no es seguro y tenemos que ir a configuracion avanzada de la pagina que nos sale y añadir regla de seguridad, ahora nos aparece ``sign in`` donde meteremos en user: ``root`` y en password la contraseña que hemos obtenido ``YlZpaZeo51uf `` ahora estamos en el panel de control y configuracion de Gitlab.  
 
  ## Finalizar la instancia
 En la consola de EC2. Haga clic en el botón Actions de la maquina que se quiere eliminar, vaya a ``Instance State`` y apareceran diferentes opciones ente ellas
